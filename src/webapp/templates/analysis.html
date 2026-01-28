@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="bg-white border rounded p-4">
+    <h2 class="h5">분석</h2>
+    <p class="text-muted">데이터 업로드 후 실행하세요.</p>
+
+    <div class="d-flex flex-wrap gap-2 mb-3">
+      <button class="btn btn-outline-primary" onclick="runAnalysis('basic_statistics')">기초 통계</button>
+      <button class="btn btn-outline-primary" onclick="runAnalysis('correlation')">상관분석</button>
+      <button class="btn btn-outline-primary" onclick="runAnalysis('anova')">ANOVA</button>
+      <button class="btn btn-outline-primary" onclick="runAnalysis('regression')">회귀분석</button>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-12">
+        <h3 class="h6">DOE ANOVA</h3>
+        <div class="input-group mb-2">
+          <span class="input-group-text">response</span>
+          <input id="doeResp" class="form-control" placeholder="예: Y" />
+          <span class="input-group-text">factors</span>
+          <input id="doeFactors" class="form-control" placeholder="예: A,B,C" />
+          <button class="btn btn-outline-success" onclick="runDoeAnova()">실행</button>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <h3 class="h6">RSM(2차 모델)</h3>
+        <div class="input-group">
+          <span class="input-group-text">response</span>
+          <input id="rsmResp" class="form-control" placeholder="예: Y" />
+          <span class="input-group-text">factors</span>
+          <input id="rsmFactors" class="form-control" placeholder="예: x1,x2" />
+          <button class="btn btn-outline-success" onclick="runRsm()">실행</button>
+        </div>
+      </div>
+    </div>
+
+    <pre id="analysisOut" class="bg-light p-3 rounded small mt-3" style="max-height: 420px; overflow:auto;"></pre>
+  </div>
+{% endblock %}

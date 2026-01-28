@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="bg-white border rounded p-4">
+    <h2 class="h5">프로젝트</h2>
+    <div class="mb-3">
+      <label class="form-label">프로젝트 이름(선택)</label>
+      <input id="projectName" class="form-control" placeholder="예: 공정 최적화 DOE" />
+    </div>
+    <div class="d-flex gap-2 mb-3">
+      <button class="btn btn-primary" onclick="createProject()">프로젝트 생성</button>
+      <button class="btn btn-outline-secondary" onclick="loadProjectInfo()">현재 프로젝트 조회</button>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">프로젝트 가져오기(.doeproj / json)</label>
+      <input id="importFile" type="file" class="form-control" />
+      <button class="btn btn-outline-primary mt-2" onclick="importProject()">가져오기</button>
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-outline-success" onclick="exportProject()">현재 프로젝트 내보내기(JSON)</button>
+    </div>
+    <pre id="projectOut" class="bg-light p-3 rounded small" style="max-height: 380px; overflow:auto;"></pre>
+  </div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="bg-white border rounded p-4">
+    <h2 class="h5">히스토리</h2>
+    <div class="d-flex gap-2 mb-3">
+      <button class="btn btn-outline-primary" onclick="loadAnalysisHistory()">분석 히스토리</button>
+      <button class="btn btn-outline-primary" onclick="loadChartHistory()">차트 히스토리</button>
+    </div>
+    <pre id="historyOut" class="bg-light p-3 rounded small" style="max-height: 520px; overflow:auto;"></pre>
+  </div>
+{% endblock %}

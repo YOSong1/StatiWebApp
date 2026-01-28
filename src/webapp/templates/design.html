@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="bg-white border rounded p-4">
+    <h2 class="h5">실험설계</h2>
+    <p class="text-muted">데스크톱의 DOE 메뉴 흐름을 웹 API로 제공합니다.</p>
+
+    <div class="row g-3">
+      <div class="col-md-6">
+        <h3 class="h6">완전요인설계</h3>
+        <div class="input-group">
+          <span class="input-group-text">levels</span>
+          <input id="ffLevels" class="form-control" placeholder="예: 2,3,2" />
+          <button class="btn btn-outline-primary" onclick="designFullFactorial()">생성</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h3 class="h6">부분요인설계(2수준)</h3>
+        <div class="input-group">
+          <span class="input-group-text">design</span>
+          <input id="fracStr" class="form-control" placeholder="예: a b ab" />
+          <button class="btn btn-outline-primary" onclick="designFractional()">생성</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h3 class="h6">Plackett-Burman</h3>
+        <div class="input-group">
+          <span class="input-group-text">factors</span>
+          <input id="pbFactors" class="form-control" placeholder="예: 8" />
+          <button class="btn btn-outline-primary" onclick="designPB()">생성</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h3 class="h6">직교배열</h3>
+        <div class="input-group">
+          <span class="input-group-text">factors</span>
+          <input id="oaFactors" class="form-control" placeholder="예: 4" />
+          <span class="input-group-text">design</span>
+          <input id="oaDesign" class="form-control" value="L8" />
+          <button class="btn btn-outline-primary" onclick="designOA()">생성</button>
+        </div>
+      </div>
+    </div>
+
+    <pre id="designOut" class="bg-light p-3 rounded small mt-3" style="max-height: 420px; overflow:auto;"></pre>
+  </div>
+{% endblock %}

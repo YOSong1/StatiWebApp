@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="bg-white border rounded p-4">
+    <h1 class="h4 mb-2">실험계획법 웹 실행</h1>
+    <p class="text-muted mb-4">엑셀/CSV 업로드 후 원하는 DOE 분석을 선택해 결과와 시각화를 확인합니다. (기존 계산 로직은 변경하지 않음)</p>
+
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <h2 class="h6">1) 데이터 업로드</h2>
+        <div class="mb-2">
+          <input id="dataFile" type="file" class="form-control" />
+        </div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary" onclick="uploadDataAndLoadColumns()">업로드</button>
+          <button class="btn btn-outline-danger" onclick="resetWorkflow()">새 작업 시작</button>
+          <button class="btn btn-outline-secondary" onclick="loadColumns()">컬럼 새로고침</button>
+        </div>
+        <div class="mt-3">
+          <div class="small text-muted">업로드 상태</div>
+          <pre id="dataOut" class="bg-light p-2 rounded small" style="max-height: 180px; overflow:auto;"></pre>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <h2 class="h6">2) 분석 설정</h2>
+        <div class="row g-2">
+          <div class="col-md-6">
+            <label class="form-label">반응값(Response)</label>
+            <select id="responseCol" class="form-select"></select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">요인(Factors) (Ctrl/Shift로 다중 선택)</label>
+            <select id="factorCols" class="form-select" multiple size="6"></select>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2 mt-3">
+          <button class="btn btn-success" onclick="runDoeWorkflow()">DOE ANOVA + 주효과/상호작용도</button>
+          <button class="btn btn-outline-success" onclick="runRecommendedFirst()">추천 실행(첫 번째)</button>
+          <button class="btn btn-outline-primary" onclick="runBasicStats()">기초 통계</button>
+          <button class="btn btn-outline-primary" onclick="runCorrelation()">상관분석</button>
+          <button class="btn btn-outline-primary" onclick="runAnova()">ANOVA</button>
+          <button class="btn btn-outline-primary" onclick="runRegression()">회귀</button>
+          <button class="btn btn-outline-primary" onclick="runMainEffectsAnovaSelected()">주효과 ANOVA</button>
+          <button class="btn btn-outline-primary" onclick="runRsmSelected()">RSM(2차)</button>
+        </div>
+
+        <div class="mt-3">
+          <div class="small text-muted">추천</div>
+          <div id="recommendations" class="d-flex flex-wrap gap-2"></div>
+          <div id="recommendationsHint" class="text-muted small mt-1"></div>
+
+          <details class="mt-2">
+            <summary class="small">추천 근거 보기(컬럼 프로파일)</summary>
+            <div class="mt-2">
+              <div id="recommendationsDefault" class="small text-muted"></div>
+              <div class="table-responsive">
+                <table class="table table-sm table-striped align-middle">
+                  <thead>
+                    <tr>
+                      <th>컬럼</th>
+                      <th>dtype</th>
+                      <th>unique</th>
+                      <th>missing</th>
+                      <th>역할</th>
+                      <th>수준 미리보기</th>
+                    </tr>
+                  </thead>
+                  <tbody id="recommendationsProfile"></tbody>
+                </table>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="mt-3">
+          <div class="small text-muted">분석 결과</div>
+          <pre id="analysisOut" class="bg-light p-2 rounded small" style="max-height: 260px; overflow:auto;"></pre>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-4" />
+
+    <div class="row g-4">
+      <div class="col-lg-12">
+        <h2 class="h6">3) 시각화</h2>
+        <div class="d-flex flex-wrap gap-2 mb-3">
+          <button class="btn btn-outline-secondary" onclick="chartCorrelationMatrix()">상관행렬</button>
+          <button class="btn btn-outline-secondary" onclick="chartHistogramResponse()">반응값 히스토그램</button>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="small text-muted">주효과도</div>
+            <img id="imgMainEffects" class="img-fluid border rounded" alt="main effects" />
+          </div>
+          <div class="col-md-6">
+            <div class="small text-muted">상호작용도</div>
+            <img id="imgInteraction" class="img-fluid border rounded" alt="interaction" />
+          </div>
+          <div class="col-md-12">
+            <div class="small text-muted">기타 차트</div>
+            <img id="imgOther" class="img-fluid border rounded" alt="chart" />
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <div class="small text-muted">차트/작업 로그</div>
+          <pre id="chartOut" class="bg-light p-2 rounded small" style="max-height: 220px; overflow:auto;"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  initRunPage();
+</script>
+{% endblock %}
