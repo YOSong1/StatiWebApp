@@ -16,6 +16,23 @@ class ChartError(RuntimeError):
 
 
 class ChartService:
+    _CHART_TYPE_ALIASES: dict[str, str] = {
+        # ASCII codes (web-friendly) -> ChartController labels
+        "histogram": "히스토그램",
+        "boxplot": "박스플롯",
+        "scatter": "산점도",
+        "line": "선 그래프",
+        "bar": "막대 그래프",
+        "correlation_matrix": "상관행렬",
+        "main_effects": "주효과도",
+        "interaction": "상호작용도",
+    }
+
+    def _normalize_chart_type(self, chart_type: str) -> str:
+        if not chart_type:
+            return chart_type
+        return self._CHART_TYPE_ALIASES.get(chart_type, chart_type)
+
     def create_chart_base64(
         self,
         chart_type: str,
@@ -25,6 +42,8 @@ class ChartService:
         group_var: str | None = None,
         options: Dict[str, Any] | None = None,
     ) -> Dict[str, Any]:
+        chart_type = self._normalize_chart_type(chart_type)
+
         if chart_type in {"주효과도", "상호작용도"}:
             # ChartController는 범주형(object/category) 요인을 요구한다.
             # DOE 데이터가 -1/1, 0/1 같은 숫자형으로 들어오는 경우가 많아,

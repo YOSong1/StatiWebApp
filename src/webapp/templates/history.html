@@ -6,6 +6,10 @@
       <button class="btn btn-outline-primary" onclick="loadAnalysisHistory()">분석 히스토리</button>
       <button class="btn btn-outline-primary" onclick="loadChartHistory()">차트 히스토리</button>
     </div>
-    <pre id="historyOut" class="bg-light p-3 rounded small" style="max-height: 520px; overflow:auto;"></pre>
+    <div id="historyOut" class="bg-light p-3 rounded small" style="max-height: 620px; overflow:auto;"></div>
+    <details class="mt-2">
+      <summary class="small text-muted">원본 JSON 보기</summary>
+      <pre id="historyOutRaw" class="bg-light p-2 rounded small mt-2" style="max-height: 520px; overflow:auto;"></pre>
+    </details>
   </div>
 {% endblock %}

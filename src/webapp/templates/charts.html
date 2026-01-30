@@ -7,7 +7,16 @@
     <div class="row g-3">
       <div class="col-md-4">
         <label class="form-label">차트 유형</label>
-        <input id="chartType" class="form-control" value="히스토그램" />
+        <select id="chartType" class="form-select">
+          <option value="histogram">히스토그램</option>
+          <option value="boxplot">박스플롯</option>
+          <option value="scatter">산점도</option>
+          <option value="line">선 그래프</option>
+          <option value="bar">막대 그래프</option>
+          <option value="correlation_matrix">상관행렬</option>
+          <option value="main_effects">주효과도</option>
+          <option value="interaction">상호작용도</option>
+        </select>
       </div>
       <div class="col-md-4">
         <label class="form-label">X 변수</label>
@@ -27,9 +36,13 @@
     </div>
 
     <div class="mt-3">
-      <img id="chartImg" class="img-fluid border rounded" alt="chart" />
+      <img id="chartImg" class="img-fluid border rounded d-none" alt="chart" loading="lazy" />
     </div>
 
-    <pre id="chartOut" class="bg-light p-3 rounded small mt-3" style="max-height: 300px; overflow:auto;"></pre>
+    <div id="chartOut" class="bg-light p-3 rounded small mt-3" style="max-height: 360px; overflow:auto;"></div>
+    <details class="mt-2">
+      <summary class="small text-muted">원본 JSON 보기</summary>
+      <pre id="chartOutRaw" class="bg-light p-2 rounded small mt-2" style="max-height: 320px; overflow:auto;"></pre>
+    </details>
   </div>
 {% endblock %}

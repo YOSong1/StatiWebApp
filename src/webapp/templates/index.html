@@ -18,7 +18,11 @@
         </div>
         <div class="mt-3">
           <div class="small text-muted">업로드 상태</div>
-          <pre id="dataOut" class="bg-light p-2 rounded small" style="max-height: 180px; overflow:auto;"></pre>
+          <div id="dataOut" class="bg-light p-2 rounded small" style="max-height: 240px; overflow:auto;"></div>
+          <details class="mt-2">
+            <summary class="small text-muted">원본 JSON 보기</summary>
+            <pre id="dataOutRaw" class="bg-light p-2 rounded small mt-2" style="max-height: 240px; overflow:auto;"></pre>
+          </details>
         </div>
       </div>
 
@@ -76,7 +80,11 @@
 
         <div class="mt-3">
           <div class="small text-muted">분석 결과</div>
-          <pre id="analysisOut" class="bg-light p-2 rounded small" style="max-height: 260px; overflow:auto;"></pre>
+          <div id="analysisOut" class="bg-light p-2 rounded small" style="max-height: 420px; overflow:auto;"></div>
+          <details class="mt-2">
+            <summary class="small text-muted">원본 JSON 보기</summary>
+            <pre id="analysisOutRaw" class="bg-light p-2 rounded small mt-2" style="max-height: 320px; overflow:auto;"></pre>
+          </details>
         </div>
       </div>
     </div>
@@ -94,21 +102,25 @@
         <div class="row g-3">
           <div class="col-md-6">
             <div class="small text-muted">주효과도</div>
-            <img id="imgMainEffects" class="img-fluid border rounded" alt="main effects" />
+            <img id="imgMainEffects" class="img-fluid border rounded d-none" alt="main effects" loading="lazy" />
           </div>
           <div class="col-md-6">
             <div class="small text-muted">상호작용도</div>
-            <img id="imgInteraction" class="img-fluid border rounded" alt="interaction" />
+            <img id="imgInteraction" class="img-fluid border rounded d-none" alt="interaction" loading="lazy" />
           </div>
           <div class="col-md-12">
             <div class="small text-muted">기타 차트</div>
-            <img id="imgOther" class="img-fluid border rounded" alt="chart" />
+            <img id="imgOther" class="img-fluid border rounded d-none" alt="chart" loading="lazy" />
           </div>
         </div>
 
         <div class="mt-3">
           <div class="small text-muted">차트/작업 로그</div>
-          <pre id="chartOut" class="bg-light p-2 rounded small" style="max-height: 220px; overflow:auto;"></pre>
+          <div id="chartOut" class="bg-light p-2 rounded small" style="max-height: 260px; overflow:auto;"></div>
+          <details class="mt-2">
+            <summary class="small text-muted">원본 JSON 보기</summary>
+            <pre id="chartOutRaw" class="bg-light p-2 rounded small mt-2" style="max-height: 260px; overflow:auto;"></pre>
+          </details>
         </div>
       </div>
     </div>

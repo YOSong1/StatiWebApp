@@ -15,6 +15,10 @@
       <button class="btn btn-outline-secondary" onclick="fetchDataPreview()">미리보기</button>
     </div>
 
-    <pre id="dataOut" class="bg-light p-3 rounded small" style="max-height: 420px; overflow:auto;"></pre>
+    <div id="dataOut" class="bg-light p-3 rounded small" style="max-height: 520px; overflow:auto;"></div>
+    <details class="mt-2">
+      <summary class="small text-muted">원본 JSON 보기</summary>
+      <pre id="dataOutRaw" class="bg-light p-2 rounded small mt-2" style="max-height: 420px; overflow:auto;"></pre>
+    </details>
   </div>
 {% endblock %}

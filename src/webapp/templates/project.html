@@ -18,6 +18,10 @@
     <div class="mb-3">
       <button class="btn btn-outline-success" onclick="exportProject()">현재 프로젝트 내보내기(JSON)</button>
     </div>
-    <pre id="projectOut" class="bg-light p-3 rounded small" style="max-height: 380px; overflow:auto;"></pre>
+    <div id="projectOut" class="bg-light p-3 rounded small" style="max-height: 520px; overflow:auto;"></div>
+    <details class="mt-2">
+      <summary class="small text-muted">원본 JSON 보기</summary>
+      <pre id="projectOutRaw" class="bg-light p-2 rounded small mt-2" style="max-height: 420px; overflow:auto;"></pre>
+    </details>
   </div>
 {% endblock %}
